@@ -20,8 +20,18 @@ const countryCodes = getCountryCodes();
 
 const labels = getLabels();
 
+
+function findCountryName(c, string) {
+    for (let index = 0; index < c.length; index++) {
+        const c_name = c[index].Country_name;
+        if (string == c_name)
+            return c_name;
+    }
+}
+
 function getCountryCodes() {
     d3.csv("dataset/country_eng-2.csv").then((data) => {
+        console.log(data[0].Country_name);
         return data;
 
     }, (error) => {
