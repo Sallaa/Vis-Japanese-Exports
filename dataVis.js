@@ -16,9 +16,24 @@ const margins = {
 const chartWidth = width - margins.right - margins.left;
 const chartHeight = height - margins.top - margins.bottom;
 
-d3.json("").then((data) => {
+const countryCodes = getCountryCodes();
 
+const labels = getLabels();
 
-}, (error) => {
-    console.log(error);
-});
+function getCountryCodes() {
+    d3.csv("dataset/country_eng-2.csv").then((data) => {
+        return data;
+
+    }, (error) => {
+        console.log(error);
+    });
+}
+
+function getLabels() {
+    d3.csv("dataset/hs2_eng-2.csv").then((data) => {
+        return data;
+
+    }, (error) => {
+        console.log(error);
+    });
+}
