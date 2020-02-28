@@ -26,6 +26,16 @@ function findCountryName(c, countryNumber) {
         if (c[index].Country == countryNumber)
             return c[index].Country_name;
     }
+    return undefined;
+}
+
+//labelNumber should be strings
+function getLabelName(l, labelNumber) {
+    for (let index = 0; index < l.length; index++) {
+        if (l[index].hs2 == labelNumber)
+            return l[index].hs2_name;
+    }
+    return undefined;
 }
 
 function getCountryCodes() {
