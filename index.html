@@ -54,7 +54,7 @@
     <p id = "graph_01">
       <script>
 
-        d3.csv("ds_2000_imports_mc_hs2.csv").then((data) => {
+        d3.csv("./dataset/ds_2000_imports_mc_hs2.csv").then((data) => {
 
 
         var goods = [];
@@ -82,23 +82,18 @@
 
         // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
 
-        var goodScale = d3.scaleBand().domain(goods).range([0, chartWidth]).paddingInner(0.05);
-        var amountScale = d3.scaleLinear().domain([d3.extent(data, d => d['amount'])]).range([chartHeight,0])
+        var goodScale = d3.scaleBand().domain(goods).range([0, chartWidth]);
+        var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([chartHeight,0]);
+        var goodScaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
         svg.selectAll("rect")
             .data(data)
-        	  .enter()
-        	  .append('rect')
-           	.attr('y', function(d) {
-        		    return goodScale(d.good_type);
-        	    })
-        	.attr('height', goodScale.bandwidth())
-        	.attr('width', function(d) {
-        		return amountScale(d.amount);
-        	});
-
-            // .style("fill", goodScale(d => d.good_type));
-
+            .join("rect")
+            .attr('x', 10)
+           	.attr('y', d => goodScale(d.good_type))
+        	  .attr('height', d => goodScale(d.good_type))
+        	  .attr('width', d => amountScale(d.amount))
+            .style("fill", d=> goodScaleColor(d.good_type));
 
 
       }, (error) => {
