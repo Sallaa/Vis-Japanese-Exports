@@ -17,22 +17,23 @@ var path = d3.geoPath()
 const mapPath = svg.append('g')
     .attr('class', 'mapPath');
 
-// Data and color scale
+//map and color scale
 var trade = d3.map();
-var colorScale = d3.scaleThreshold()
-    .domain([0, 2071, 3000, 4000, 5000])
-    .range(d3.schemeReds[5]);
+let colorScale = d3.scaleSequential(d3.interpolateReds)
+                        .domain([0, 10000]);
 
 var promises = [
-    d3.json('https://unpkg.com/world-atlas@1/world/110m.json'),
-    d3.csv('dataset/ds_2000_exports_mc_country.csv', function (d) { trade.set(d.country, + d.value); })
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
+    d3.csv('dataset/ds_2000_exports_mc_country.csv', function (d) {
+        console.log(d['country']);
+        
+        trade.set(d.country, +d.value);
+    })
 ];
-
-
 
 Promise.all(promises).then(ready);
 
-function ready([data]){
+function ready([data]) {
     console.log(data);
 
     // convert topojson to geo data
@@ -48,13 +49,13 @@ function ready([data]){
             .style("stroke-width", "1")
             .style("stroke", "white")
             .attr("d", path)
-        
-        // set colors for the countries
+
+            // set colors for the countries
             .attr("fill", function (d) {
-                d.total = trade.get(d.country) || 0;
+                d.total = trade.get(d.properties.name) || 0;
                 // console.log(trade);
-                console.log(d.total);
-                
+                console.log(d.properties.name);
+
                 return colorScale(d.total);
             });
     });
