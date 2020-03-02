@@ -3,7 +3,8 @@ const svg = d3.select("#vis")
     .attr("id", "chart1")
     .attr("width", "960")
     .attr("height", "500")
-    .style("filter", "drop-shadow( 0px 5px 5px rgba(0, 0, 0, .5))");
+    .style("-webkit-filter", "drop-shadow( 0px 15px 1rem #1c1e20)")
+    .style("filter", "drop-shadow( 0px 15px 1rem #1c1e20)");
 
 const height = svg.attr("height");
 const width = svg.attr("width");
@@ -71,7 +72,8 @@ const svg2 = d3.select("#vis2")
     .attr("id", "chart2")
     .attr("width", "960")
     .attr("height", "500")
-    .style("filter", "drop-shadow( 0px 5px 5px rgba(0, 0, 0, .5))");
+    .style("-webkit-filter", "drop-shadow( 0px 15px 1rem #1c1e20)")
+    .style("filter", "drop-shadow( 0px 15px 1rem #1c1e20)");
 
 
 const height2 = svg2.attr("height");
