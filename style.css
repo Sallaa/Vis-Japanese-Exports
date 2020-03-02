@@ -1,0 +1,51 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    max-width: 1000px;
+    margin: auto;
+    color: #1c1e20;
+}
+
+h1 {
+    padding-top: 3rem;
+}
+
+#mainTitle {
+    text-align: center;
+}
+
+span.red {
+    color: red;
+}
+
+u {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+}
+
+.legend span {
+    margin-right: 10px;
+}
+
+.gridlines line {
+    stroke: #bbb;
+}
+
+.gridlines .domain {
+    stroke: none;
+}
+
+.x_axis line {
+    stroke: #bbb;
+}
+
+.x_axis path {
+    stroke: #bbb;
+}
+
+.y_axis line {
+    stroke: #bbb;
+}
+
+.y_axis path {
+    stroke: #bbb;
+}

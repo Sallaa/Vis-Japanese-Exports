@@ -1,56 +1,18 @@
 <html>
 <meta charset="UTF-8">
-<style>
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        max-width: 1000px;
-        margin: auto;
-        color: #1c1e20;
-    }
-    h1 {
-        padding-top: 5rem;
-    }
-    span.red{
-        color: red;
-    }
-    .legend span {
-        margin-right: 10px;
-    }
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-    .gridlines line {
-        stroke: #bbb;
-    }
-
-    .gridlines .domain {
-        stroke: none;
-    }
-
-    .x_axis line {
-        stroke: #bbb;
-    }
-
-    .x_axis path {
-        stroke: #bbb;
-    }
-
-    .y_axis line {
-        stroke: #bbb;
-    }
-
-    .y_axis path {
-        stroke: #bbb;
-    }
-</style>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/topojson@3"></script>
 
-
 <body>
-    <h1>Where does <span class="red">Japan</span> invest money?</h1>
-    <h1><span class="red">Japanese</span> exports in 2000</h1>
+    <h1 id="mainTitle">How <span class="red">Japan</span> raised again as a large economy</h1>
+    <h1><span class="red">Japanese</span> exports in <u>2000</u></h1>
     <p id="vis"></p>
 
-    <h1><span class="red">Japanese</span> exports in 2015</h1>
+    <h1><span class="red">Japanese</span> exports in <u>2015</u></h1>
     <p id="vis2"></p>
 
 
