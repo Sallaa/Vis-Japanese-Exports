@@ -25,7 +25,6 @@ let colorScale = d3.scaleSequential(d3.interpolateReds)
 var promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
     d3.csv('dataset/ds_2000_exports_mc_country.csv', function (d) {
-        console.log(d['country']);
         
         trade.set(d.country, +d.value);
     })
@@ -34,7 +33,6 @@ var promises = [
 Promise.all(promises).then(ready);
 
 function ready([data]) {
-    console.log(data);
 
     // convert topojson to geo data
     var countries = topojson.feature(data, data.objects.countries).features;
@@ -53,8 +51,61 @@ function ready([data]) {
             // set colors for the countries
             .attr("fill", function (d) {
                 d.total = trade.get(d.properties.name) || 0;
+
+                return colorScale(d.total);
+            });
+    });
+}
+
+
+const svg2 = d3.select("#vis2")
+    .append('svg')
+    .attr("id", "chart2")
+    .attr("width", "960")
+    .attr("height", "500");
+
+const height2 = svg2.attr("height");
+const width2 = svg2.attr("width");
+
+
+const mapPath2 = svg2.append('g')
+    .attr('class', 'mapPath');
+
+//map and color scale
+let trade2 = d3.map();
+
+let promises2 = [
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
+    d3.csv('dataset/ds_2015_exports_mc_country.csv', function (d) {
+
+        trade2.set(d.country, +d.value);
+    })
+];
+
+Promise.all(promises2).then(ready2);
+
+function ready2([data]) {
+
+    // convert topojson to geo data
+    var countries = topojson.feature(data, data.objects.countries).features;
+
+    // // create path
+    d3.json("dataset/world.topojson").then(function (data) {
+        mapPath2.selectAll("path")
+            .data(countries)
+            .enter()
+            .append("path")
+            .style("stroke-width", "1")
+            .style("stroke", "white")
+            .attr("d", path)
+
+            // set colors for the countries
+            .attr("fill", function (d) {
+                d.total = trade2.get(d.properties.name) || 0;
+                
+                //debug
                 // console.log(trade);
-                console.log(d.properties.name);
+                // console.log(d.properties.name);
 
                 return colorScale(d.total);
             });
