@@ -1,42 +1,41 @@
-,Country_name
-China,4693
+country,value
+China,8781
 Taiwan,4423
 Korea,4384
-United_States_of_America,4178
+United States of America,4178
 Thailand,4093
-Hong_Kong,4088
-Viet_Nam,3832
+Vietnam,3832
 Singapore,3470
 Indonesia,3383
 Malaysia,3315
 Philippines,3233
 Germany,2865
 India,2809
-United_Kingdom,2629
+United Kingdom,2629
 Australia,2596
 France,2455
 Italy,2336
 Canada,2215
 Netherlands,2168
-United_Arab_Emirates,2093
+United Arab Emirates,2093
 Mexico,2079
 Brazil,1911
 Russia,1898
 Belgium,1796
 Turkey,1668
 Spain,1663
-Saudi_Arabia,1643
-New_Zealand,1551
-South_Africa,1527
+Saudi Arabia,1643
+New Zealand,1551
+South Africa,1527
 Myanmar,1517
 Switzerland,1497
 Pakistan,1399
 Bangladesh,1389
-Sri_Lanka,1303
+Sri Lanka,1303
 Poland,1242
 Sweden,1183
 Cambodia,1139
-Czech_Republic,1113
+Czech Republic,1113
 Israel,1107
 Egypt,1103
 Argentina,1051
@@ -68,14 +67,14 @@ Lebanon,512
 Lao,480
 Uruguay,473
 Morocco,461
-Guam_(USA),457
+Guam (USA),457
 Angola,456
 Ukraine,436
-Costa_Rica,432
+Costa Rica,432
 Bulgaria,416
 Lithuania,401
 Algeria,399
-Dominican_Republic,390
+Dominican Republic,390
 Slovenia,377
 Paraguay,376
 Slovak,376
@@ -85,11 +84,11 @@ Guatemala,360
 Kazakhstan,359
 Latvia,356
 Iraq,351
-El_Salvador,343
-Trinidad_and_Tobago,341
+El Salvador,343
+Trinidad and Tobago,341
 Brunei,338
 Uganda,331
-Papua_New_Guinea,331
+Papua New Guinea,331
 Venezuela,331
 Tanzania,326
 Palau,321
@@ -109,15 +108,15 @@ Sudan,238
 Mozambique,237
 Cyprus,232
 Luxembourg,226
-Puerto_Rico_(USA),223
-Northern_Mariana_Islands_(USA),223
+Puerto Rico (USA),223
+Northern Mariana Islands (USA),223
 Congo,217
 Zambia,216
 Azerbaijan,205
-Côte_d'Ivoire,201
+Côte d'Ivoire,201
 Bahamas,200
 Djibouti,198
-South_Sudan,196
+South Sudan,196
 Afghanistan,196
 Cameroon,195
 Maldives,194
@@ -127,18 +126,18 @@ Kyrgyz,188
 Micronesia,187
 Croatia,181
 Turkmenistan,181
-New_Caledonia_(France),177
+New Caledonia (France),177
 Jamaica,177
-Canary_Islands_(Spain),172
+Canary Islands (Spain),172
 Libya,168
 Belarus,167
 Georgia,167
 Haiti,158
 Serbia,155
-Netherlands_Antilles,153
+Netherlands Antilles,153
 Senegal,145
 Samoa,145
-French_Polynesia,145
+French Polynesia,145
 Iceland,125
 Barbados,125
 Namibia,124
@@ -149,75 +148,75 @@ Vanuatu,117
 Seychelles,115
 Bhutan,115
 Suriname,110
-Solomon_Islands,109
+Solomon Islands,109
 Zimbabwe,104
 Malawi,102
 Togo,101
-Sierra_Leone,93
+Sierra Leone,93
 Guyana,93
 Kiribati,92
 Moldova,85
-Cayman_islands_(UK),82
+Cayman islands (UK),82
 Timor-Leste,78
-Gibraltar_(UK),76
+Gibraltar (UK),76
 Mauritania,75
 Tonga,74
-Former_Yugoslav_Republic_of_Macedonia,73
+Former Yugoslav Republic of Macedonia,73
 Guinea,71
 Armenia,70
-Bermuda_(UK),70
+Bermuda (UK),70
 St.Lucia,66
 Grenada,65
 Dominica,63
 Rwanda,60
 Montenegro,60
-Bosnia_and_Herzegovina,60
+Bosnia and Herzegovina,60
 Botswana,59
-Antigua_and_Barbuda,58
-St.Christopher_and_Nevis,56
-Reunion_(France),56
+Antigua and Barbuda,58
+St.Christopher and Nevis,56
+Reunion (France),56
 St.Vincent,51
-French_West_Indies,50
+French West Indies,50
 Swaziland,49
 Tajikistan,47
 Mali,47
-Burkina_Faso,45
+Burkina Faso,45
 Lesotho,43
-Equatorial_Guinea,42
+Equatorial Guinea,42
 Somalia,41
 Benin,39
-British_Virgin_Islands,38
+British Virgin Islands,38
 Tuvalu,37
 Burundi,36
 Niger,35
 Chad,34
 Belize,33
 Cook,32
-French_Guiana,32
+French Guiana,32
 Albania,31
-West_Bank_and_Gaza_Strip,31
-Central_Africa,30
+West Bank and Gaza Strip,31
+Central Africa,30
 Eritrea,29
-Cape_Verde,24
+Cape Verde,24
 Comoros,22
-American_Samoa,21
-Turks_and_Caicos_Islands_(UK),21
+American Samoa,21
+Turks and Caicos Islands (UK),21
 Gambia,19
 Monaco,19
-British_Anguilla,16
-US_Virgin_Islands,15
+British Anguilla,16
+US Virgin Islands,15
 Guinea-Bissau,13
 Nauru,12
-Monstserrat_(UK),11
+Monstserrat (UK),11
 Niue,11
-Other_Australian_Territories,10
-West_Sahara,9
-Sao_Tome_and_Principe,8
+Other Australian Territories,10
+West Sahara,9
+Sao Tome and Principe,8
 Kosovo,7
 Andorra,6
-Falkland_Islands_and_Dependencies_(UK),5
-St._Helena_Island_and_Dependencies_(UK),4
-Ceuta_and_Melilla_(Spain),4
-Greenland_(Denmark),3
-British_Antarctic_Territory,2
-Tokelau_Islands_(NZ),1
+Falkland Islands and Dependencies (UK),5
+St. Helena Island and Dependencies (UK),4
+Ceuta and Melilla (Spain),4
+Greenland (Denmark),3
+British Antarctic Territory,2
+Tokelau Islands (NZ),1
