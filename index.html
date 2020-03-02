@@ -82,18 +82,28 @@
 
         // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
 
-        var goodScale = d3.scaleBand().domain(goods).range([0, chartWidth]);
-        var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([chartHeight,0]);
+        var goodScale = d3.scaleBand().domain(goods).rangeRound([0, chartHeight],0.5);
+        var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([0,chartWidth]);
         var goodScaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
         svg.selectAll("rect")
             .data(data)
             .join("rect")
-            .attr('x', 10)
+            .attr('x', 5)
            	.attr('y', d => goodScale(d.good_type))
-        	  .attr('height', d => goodScale(d.good_type))
-        	  .attr('width', d => amountScale(d.amount))
+        	  .attr('height', 25)
+        	  .attr('width', d => amountScale(d.amount)+margin.right)
             .style("fill", d=> goodScaleColor(d.good_type));
+
+
+       svg.selectAll("text")
+            .data(data)
+            .join("text")
+            .attr("x", 20)
+            .attr("y",d => goodScale(d.good_type)+17)
+            .attr("text-anchor", "left")
+            .text(d=> d.good_type)
+            .style("fill", "black");
 
 
       }, (error) => {
