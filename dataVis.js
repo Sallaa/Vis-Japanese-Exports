@@ -7,6 +7,13 @@ const svg = d3.select("#vis")
 const height = svg.attr("height");
 const width = svg.attr("width");
 
+svg.append('rect')
+    .attr('width', width)
+    .attr('height', height)
+    .attr("rx", 10)
+    .attr("ry", 10)
+    .attr('fill', '#1c1e20');
+
 var projection = d3.geoMercator()
     .center([0, 20])
     .scale(150);
@@ -20,12 +27,12 @@ const mapPath = svg.append('g')
 //map and color scale
 var trade = d3.map();
 let colorScale = d3.scaleSequential(d3.interpolateReds)
-                        .domain([0, 10000]);
+    .domain([0, 10000]);
 
 var promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
     d3.csv('dataset/ds_2000_exports_mc_country.csv', function (d) {
-        
+
         trade.set(d.country, +d.value);
     })
 ];
@@ -45,7 +52,7 @@ function ready([data]) {
             .enter()
             .append("path")
             .style("stroke-width", "1")
-            .style("stroke", "white")
+            .style("stroke", "#1c1e20")
             .attr("d", path)
 
             // set colors for the countries
@@ -67,6 +74,12 @@ const svg2 = d3.select("#vis2")
 const height2 = svg2.attr("height");
 const width2 = svg2.attr("width");
 
+svg2.append('rect')
+    .attr('width', width)
+    .attr('height', height)
+    .attr("rx", 10)
+    .attr("ry", 10)
+    .attr('fill', '#1c1e20');
 
 const mapPath2 = svg2.append('g')
     .attr('class', 'mapPath');
@@ -96,13 +109,13 @@ function ready2([data]) {
             .enter()
             .append("path")
             .style("stroke-width", "1")
-            .style("stroke", "white")
+            .style("stroke", "#1c1e20")
             .attr("d", path)
 
             // set colors for the countries
             .attr("fill", function (d) {
                 d.total = trade2.get(d.properties.name) || 0;
-                
+
                 //debug
                 // console.log(trade);
                 // console.log(d.properties.name);
