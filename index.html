@@ -47,6 +47,68 @@
 <body>
     <h1>Where does <span class="red">Japan</span> invest money?</h1>
     <p id="vis"></p>
+
+
+
+
+    <p id = "graph_01">
+      <script>
+
+        d3.csv("ds_2000_imports_mc_hs2.csv").then((data) => {
+
+
+        var goods = [];
+
+        data.forEach((d, i) => {
+          d['good_type'] = d[''];
+          d['amount'] = Number(d['hs2_name']);
+          goods.push(d['']);
+        });
+
+        console.log(data);
+        console.log(goods);
+
+        var width = 800;
+        var height = 800;
+        var margin = {top: 20, bottom:20, right: 20, left: 20}
+        var chartWidth = width - margin.left - margin.right;
+        var chartHeight = height - margin.top - margin.bottom;
+
+        var svg = d3.select("#graph_01").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
+
+        var goodScale = d3.scaleBand().domain(goods).range([0, chartWidth]).paddingInner(0.05);
+        var amountScale = d3.scaleLinear().domain([d3.extent(data, d => d['amount'])]).range([chartHeight,0])
+
+        svg.selectAll("rect")
+            .data(data)
+        	  .enter()
+        	  .append('rect')
+           	.attr('y', function(d) {
+        		    return goodScale(d.good_type);
+        	    })
+        	.attr('height', goodScale.bandwidth())
+        	.attr('width', function(d) {
+        		return amountScale(d.amount);
+        	});
+
+            // .style("fill", goodScale(d => d.good_type));
+
+
+
+      }, (error) => {
+          console.log("ERRORRRRR");
+      });
+
+      </script>
+      </p>
+
+
 </body>
 <script src="dataVis.js"></script>
 </html>
