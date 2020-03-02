@@ -1,57 +1,43 @@
 const svg = d3.select("#vis")
     .append('svg')
     .attr("id", "chart1")
-    .attr("width", "800")
+    .attr("width", "960")
     .attr("height", "500");
 
 const height = svg.attr("height");
 const width = svg.attr("width");
-const margins = {
-    "top": 30,
-    "right": 30,
-    "bottom": 30,
-    "left": 30
-};
 
-const chartWidth = width - margins.right - margins.left;
-const chartHeight = height - margins.top - margins.bottom;
+var projection = d3.geoMercator()
+    .center([0, 20])
+    .scale(150);
 
-const countryCodes = getCountryCodes();
+var path = d3.geoPath()
+    .projection(projection);
 
-const labels = getLabels();
+const mapPath = svg.append('g')
+    .attr('class', 'mapPath');
 
-//countryNumber should be a string
-function findCountryName(c, countryNumber) {
-    for (let index = 0; index < c.length; index++) {
-        if (c[index].Country == countryNumber)
-            return c[index].Country_name;
-    }
-    return undefined;
-}
+var promises = [
+    d3.json('https://unpkg.com/world-atlas@1/world/110m.json')
+];
 
-//labelNumber should be strings
-function getLabelName(l, labelNumber) {
-    for (let index = 0; index < l.length; index++) {
-        if (l[index].hs2 == labelNumber)
-            return l[index].hs2_name;
-    }
-    return undefined;
-}
+Promise.all(promises).then(ready);
 
-function getCountryCodes() {
-    d3.csv("dataset/country_eng-2.csv").then((data) => {
-        return data;
+function ready([data]){
+    console.log(data);
 
-    }, (error) => {
-        console.log(error);
-    });
-}
+    // convert topojson to geo data
+    var countries = topojson.feature(data, data.objects.countries).features;
+    console.log(countries);
 
-function getLabels() {
-    d3.csv("dataset/hs2_eng-2.csv").then((data) => {
-        return data;
-
-    }, (error) => {
-        console.log(error);
+    // // create path
+    d3.json("dataset/world.topojson").then(function (data) {
+        mapPath.selectAll("path")
+            .data(countries)
+            .enter()
+            .append("path")
+            .style("stroke-width", "1")
+            .style("stroke", "red")
+            .attr("d", path);
     });
 }
