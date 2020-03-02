@@ -50,11 +50,11 @@
 
 
 
-
+    <h1> 2000 Exports </h1>
     <p id = "graph_01">
       <script>
 
-        d3.csv("./dataset/ds_2000_imports_mc_hs2.csv").then((data) => {
+        d3.csv("./dataset/ds_2000_exports_mc_hs2.csv").then((data) => {
 
 
         var goods = [];
@@ -82,26 +82,27 @@
 
         // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
 
-        var goodScale = d3.scaleBand().domain(goods).rangeRound([0, chartHeight],0.5);
-        var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([0,chartWidth]);
+        var goodScale = d3.scaleBand().domain(goods).rangeRound([0, chartWidth],0.5);
+        var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([0,chartHeight]);
         var goodScaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
         svg.selectAll("rect")
             .data(data)
             .join("rect")
-            .attr('x', 5)
-           	.attr('y', d => goodScale(d.good_type))
-        	  .attr('height', 25)
-        	  .attr('width', d => amountScale(d.amount)+margin.right)
+            .attr('x', d => goodScale(d.good_type))
+           	.attr('y', 20)
+        	  .attr('height', d => amountScale(d.amount))
+        	  .attr('width', 25)
             .style("fill", d=> goodScaleColor(d.good_type));
 
 
        svg.selectAll("text")
             .data(data)
             .join("text")
-            .attr("x", 20)
-            .attr("y",d => goodScale(d.good_type)+17)
-            .attr("text-anchor", "left")
+            .attr("x", d => goodScale(d.good_type))
+            .attr("y", 20)
+            .attr("text-anchor", "right")
+            .attr("rotate",90)
             .text(d=> d.good_type)
             .style("fill", "black");
 
@@ -113,6 +114,69 @@
       </script>
       </p>
 
+      <h1> 2015 Exports </h1>
+      <p id = "graph_02">
+        <script>
+
+          d3.csv("./dataset/ds_2015_exports_mc_hs2.csv").then((data) => {
+
+
+          var goods = [];
+
+          data.forEach((d, i) => {
+            d['good_type'] = d[''];
+            d['amount'] = Number(d['hs2_name']);
+            goods.push(d['']);
+          });
+
+          console.log(data);
+          console.log(goods);
+
+          var width = 800;
+          var height = 800;
+          var margin = {top: 20, bottom:20, right: 20, left: 20}
+          var chartWidth = width - margin.left - margin.right;
+          var chartHeight = height - margin.top - margin.bottom;
+
+          var svg = d3.select("#graph_02").append("svg")
+              .attr("width", width)
+              .attr("height", height)
+            .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
+
+          var goodScale = d3.scaleBand().domain(goods).rangeRound([0,chartWidth],0.5);
+          var amountScale = d3.scaleLinear().domain(d3.extent(data, d => d['amount'])).range([0, chartHeight]);
+          var goodScaleColor = d3.scaleOrdinal(d3.schemeCategory10);
+
+          svg.selectAll("rect")
+              .data(data)
+              .join("rect")
+              .attr('x', d => goodScale(d.good_type))
+              .attr('y', 20 )
+              .attr('height', d => amountScale(d.amount)+margin.right)
+              .attr('width', 25 )
+              .style("fill", d=> goodScaleColor(d.good_type));
+
+
+         svg.selectAll("text")
+              .data(data)
+              .join("text")
+              .attr("x", d => goodScale(d.good_type))
+              .attr("y",20)
+              .attr("text-anchor", "left")
+              .text(d=> d.good_type)
+              .rotate(90)
+              .style("fill", "black");
+
+
+        }, (error) => {
+            console.log("ERRORRRRR");
+        });
+
+        </script>
+        </p>
 
 </body>
 <script src="dataVis.js"></script>
