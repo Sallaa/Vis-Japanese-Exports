@@ -8,127 +8,133 @@
 <script src="https://unpkg.com/topojson@3"></script>
 
 <body>
-  <h1><span class="red">Japanese</span> exports in <u>2015</u></h1>
-<p id="vis2"></p>
+    <h1 id="mainTitle"><span class="red">Japan</span>'s strategic exports to become a large economy</h1>
+    <h1><span class="red">Japanese</span> exports in <u>1988</u></h1>
+    <p id="vis"></p>
 
-<h1><span class="red">Japan</span>'s Exported goods</h1>
-<p> This is shows the top 10 types of goods traded, and the economic benefit Japan gained from these goods, in 1988 and 2015.</p>
-
-<p id = "graph_01">
-  <script>
-
-    d3.csv("./dataset/overall.csv").then((data) => {
+    <h1><span class="red">Japanese</span> exports in <u>2015</u></h1>
+  <p id="vis2"></p>
 
 
-    var goods = [];
-    var years = [1988, 2015];
 
-    data.forEach((d, i) => {
-      d['value'] = Number(d['Value_in_Yen']);
-      d['year'] = Number(d['Year']);
-      goods.push(d["hs2_name"]);
+  <h1><span class="red">Japan</span>'s Exported goods</h1>
+  <p> This is shows the top 10 types of goods traded, and the economic benefit Japan gained from these goods, in 1988 and 2015.</p>
+
+  <p id = "graph_01">
+    <script>
+
+      d3.csv("./dataset/overall.csv").then((data) => {
+
+
+      var goods = [];
+      var years = [1988, 2015];
+
+      data.forEach((d, i) => {
+        d['value'] = Number(d['Value_in_Yen']);
+        d['year'] = Number(d['Year']);
+        goods.push(d["hs2_name"]);
+      });
+
+      data = data.slice().sort((a, b) => d3.descending(a.value, b.value) && d3.ascending(a.year, b.year));
+
+      var goods = [...new Set (goods)];
+      // console.log(goods);
+
+      console.log(data);
+
+      var width = 960;
+      var height = 600;
+      var margin = {top: 20, bottom:20, right: 0, left: 30}
+      var chartWidth = width - margin.left - margin.right;
+      var chartHeight = height - margin.top - margin.bottom;
+      var axisTicks = {qty: 5, outerSize: 0, dateFormat: '%y'};
+
+      var svg = d3.select("#graph_01").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+      // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
+
+      var yearScale = d3.scaleBand()
+                        .domain(years)
+                        .rangeRound([0, chartHeight-20])
+                        .paddingInner(0.1);
+
+      var goodScale = d3.scaleBand()
+                  .domain(goods)
+                  .range([0, yearScale.bandwidth()])
+                  .padding(0.2);
+
+      var valueScale = d3.scaleLinear().domain(d3.extent(data, d => d['value'])).range([0,chartWidth]);
+
+      var goodScaleColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+      var xAxis = d3.axisBottom(valueScale).tickFormat(d3.format("$.0s")).tickSizeOuter(axisTicks.outerSize);
+      var yAxis = d3.axisLeft(yearScale).tickSizeOuter(axisTicks.outerSize);
+      let xGridlines = d3.axisBottom(valueScale)
+                            .tickSize(chartHeight)
+                            .tickFormat("")
+
+
+        //X-axis
+        svg.append("g")
+             .attr("class", "x axis")
+             .attr("transform", `translate(0,${chartHeight})`)
+             .call(xAxis)
+             .attr("font-weight", "bold");
+
+        // Y-axis
+        svg.append("g")
+             .attr("class", "y axis")
+             .call(yAxis)
+             .attr("font-size", 10)
+             .attr("font-weight", "bold");
+
+        svg.append("g")
+            .attr("class", "x grid")
+            .call(xGridlines);
+
+
+            // Inspired heavily by Medium tutorial: https://medium.com/@vaibhavkumar_19430/how-to-create-a-grouped-bar-chart-in-d3-js-232c54f85894
+             var yearGraph = svg.selectAll("#year")
+                 .data(data)
+                 .enter()
+                 .append("g")
+                 .attr("id","year")
+                 .attr("transform", d=> `translate(0, ${yearScale(d.Year)})`);
+
+
+    var bars =   yearGraph.selectAll(".bars")
+          .data(d => [d])
+          .enter()
+          .append("rect")
+          .attr("class", "bars")
+          .attr('x', 1)
+          .attr("y", d => goodScale(d.hs2_name) + 10)
+          .style("fill", d=> goodScaleColor(d.hs2_name))
+          .attr("width", d => valueScale(d.value))
+          .attr("height", goodScale.bandwidth());
+
+     bars.selectAll("text")
+          .data(d => [d])
+          .enter()
+          .append("text")
+          .attr("x",40)
+          .attr("y",  d => goodScale(d.hs2_name) + 5)
+          .attr("text-anchor", "center")
+          .text(d=> d.good_type)
+          .style("fill", "black");
+
+
+    }, (error) => {
+        console.log("ERRORRRRR");
     });
 
-    data = data.slice().sort((a, b) => d3.descending(a.value, b.value) && d3.ascending(a.year, b.year));
-
-    var goods = [...new Set (goods)];
-    // console.log(goods);
-
-    console.log(data);
-
-    var width = 960;
-    var height = 600;
-    var margin = {top: 20, bottom:20, right: 0, left: 30}
-    var chartWidth = width - margin.left - margin.right;
-    var chartHeight = height - margin.top - margin.bottom;
-    var axisTicks = {qty: 5, outerSize: 0, dateFormat: '%y'};
-
-    var svg = d3.select("#graph_01").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-    // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
-
-    var yearScale = d3.scaleBand()
-                      .domain(years)
-                      .rangeRound([0, chartHeight-20])
-                      .paddingInner(0.1);
-
-    var goodScale = d3.scaleBand()
-                .domain(goods)
-                .range([0, yearScale.bandwidth()])
-                .padding(0.2);
-
-    var valueScale = d3.scaleLinear().domain(d3.extent(data, d => d['value'])).range([0,chartWidth]);
-
-    var goodScaleColor = d3.scaleOrdinal(d3.schemeTableau10);
-
-    var xAxis = d3.axisBottom(valueScale).tickFormat(d3.format("$.0s")).tickSizeOuter(axisTicks.outerSize);
-    var yAxis = d3.axisLeft(yearScale).tickSizeOuter(axisTicks.outerSize);
-    let xGridlines = d3.axisBottom(valueScale)
-                          .tickSize(chartHeight)
-                          .tickFormat("")
-
-
-      //X-axis
-      svg.append("g")
-           .attr("class", "x axis")
-           .attr("transform", `translate(0,${chartHeight})`)
-           .call(xAxis)
-           .attr("font-weight", "bold");
-
-      // Y-axis
-      svg.append("g")
-           .attr("class", "y axis")
-           .call(yAxis)
-           .attr("font-size", 10)
-           .attr("font-weight", "bold");
-
-      svg.append("g")
-          .attr("class", "x grid")
-          .call(xGridlines);
-
-
-          // Inspired heavily by Medium tutorial: https://medium.com/@vaibhavkumar_19430/how-to-create-a-grouped-bar-chart-in-d3-js-232c54f85894
-           var yearGraph = svg.selectAll("#year")
-               .data(data)
-               .enter()
-               .append("g")
-               .attr("id","year")
-               .attr("transform", d=> `translate(0, ${yearScale(d.Year)})`);
-
-
-  var bars =   yearGraph.selectAll(".bars")
-        .data(d => [d])
-        .enter()
-        .append("rect")
-        .attr("class", "bars")
-        .attr('x', 1)
-        .attr("y", d => goodScale(d.hs2_name) + 10)
-        .style("fill", d=> goodScaleColor(d.hs2_name))
-        .attr("width", d => valueScale(d.value))
-        .attr("height", goodScale.bandwidth());
-
-   bars.selectAll("text")
-        .data(d => [d])
-        .enter()
-        .append("text")
-        .attr("x",40)
-        .attr("y",  d => goodScale(d.hs2_name) + 5)
-        .attr("text-anchor", "center")
-        .text(d=> d.good_type)
-        .style("fill", "black");
-
-
-  }, (error) => {
-      console.log("ERRORRRRR");
-  });
-
-  </script>
-  </p>
+    </script>
+    </p>
 
 </body>
 <script src="maps.js"></script>
