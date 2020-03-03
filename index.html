@@ -104,7 +104,7 @@
         svg.append("g")
           .attr("class", "x axis")
           .attr("transform", `translate(0,${chartHeight})`)
-          .attr("stroke-width", '1')
+          .attr("stroke-width", '0.75')
           .attr("color", 'white')
           .call(xAxis);
 
@@ -112,13 +112,13 @@
         svg.append("g")
           .attr("class", "y axis")
           .call(yAxis)
-          .attr("stroke-width", '1')
+          .attr("stroke-width", '0.75')
           .attr("color", 'white')
           .attr("font-size", 10);
 
         svg.append("g")
           .attr("class", "x grid")
-          .attr("stroke-width", '1')
+          .attr("stroke-width", '0.75')
           .attr("color", 'white')
           .call(xGridlines);
 
