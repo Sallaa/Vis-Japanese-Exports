@@ -143,14 +143,11 @@
           .attr("width", d => valueScale(d.value))
           .attr("height", goodScale.bandwidth());
 
-        bars.selectAll("text")
-          .data(d => [d])
-          .enter()
-          .append("text")
+        bars.append("text")
           .attr("x", 40)
           .attr("y", d => goodScale(d.hs2_name) + 5)
           .attr("text-anchor", "center")
-          .text(d => d.good_type);
+          .text(d => d.hs2_name);
 
 
       }, (error) => {
