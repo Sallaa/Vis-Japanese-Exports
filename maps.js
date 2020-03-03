@@ -28,8 +28,8 @@ const mapPath = svg.append('g')
 
 //map and color scale
 var trade = d3.map();
-let colorScale = d3.scaleSequential(d3.interpolateReds)
-    .domain([0, 10000]);
+let colorScale1 = d3.scaleSequential(d3.interpolateReds)
+    .domain([0, 2000000000]);
 
 var promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
@@ -61,7 +61,7 @@ function ready([data]) {
             .attr("fill", function (d) {
                 d.total = trade.get(d.properties.name) || 0;
 
-                return colorScale(d.total);
+                return colorScale1(d.total);
             });
     });
 }
@@ -91,6 +91,9 @@ const mapPath2 = svg2.append('g')
 
 //map and color scale
 let trade2 = d3.map();
+
+let colorScale2 = d3.scaleSequential(d3.interpolateReds)
+    .domain([0, 2000000000]);
 
 let promises2 = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
@@ -125,7 +128,7 @@ function ready2([data]) {
                 // console.log(trade);
                 // console.log(d.properties.name);
 
-                return colorScale(d.total);
+                return colorScale2(d.total);
             });
     });
 }

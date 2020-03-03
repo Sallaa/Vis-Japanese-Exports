@@ -1,24 +1,23 @@
-Country_name,Value_in_Yen
-United_States_of_America,15224592157
-China,13223350314
+country,value
+United States of America,15224592157
+China,17459347202
 Korea,5326569268
 Taiwan,4472530718
-Hong_Kong,4235996888
 Thailand,3386296663
 Singapore,2402629538
 Germany,1964783513
 Australia,1554918174
-Viet_Nam,1516382224
+Viet Nam,1516382224
 Malaysia,1452551889
 Netherlands,1403496793
 Indonesia,1396293135
-United_Kingdom,1299624562
+United Kingdom,1299624562
 Mexico,1267561176
 Philippines,1148076727
-United_Arab_Emirates,1052107341
+United Arab Emirates,1052107341
 India,981347399
 Canada,936052814
-Saudi_Arabia,825999129
+Saudi Arabia,825999129
 France,634506376
 Belgium,619670368
 Russia,617658704
@@ -27,10 +26,10 @@ Brazil,475650066
 Italy,434923905
 Oman,389673090
 Switzerland,326738946
-South_Africa,325495918
+South Africa,325495918
 Spain,286546215
 Turkey,261583313
-New_Zealand,255413352
+New Zealand,255413352
 Kuwait,225709469
 Pakistan,202765203
 Chile,202286030
@@ -42,10 +41,10 @@ Bangladesh,166314642
 Sweden,161838219
 Egypt,155415899
 Israel,141472324
-Sri_Lanka,141460536
+Sri Lanka,141460536
 Ireland,133834310
 Myanmar,128924668
-Czech_Republic,128501336
+Czech Republic,128501336
 Austria,125095721
 Bahamas,122125912
 Colombia,116877572
@@ -56,7 +55,7 @@ Liberia,104539395
 Argentina,96726683
 Peru,95690037
 Jordan,69984323
-Puerto_Rico_(USA),69069251
+Puerto Rico (USA),69069251
 Iraq,60963667
 Lebanon,56909160
 Luxembourg,54211818
@@ -68,7 +67,7 @@ Nigeria,43420820
 Finland,43289184
 Macao,39985172
 Romania,39487083
-Costa_Rica,37333544
+Costa Rica,37333544
 Cambodia,36569894
 Iran,34774429
 Tanzania,33254811
@@ -78,16 +77,16 @@ Morocco,31374559
 Mongolia,30478925
 Uzbekistan,30407197
 Algeria,29999117
-Guam_(USA),29681385
+Guam (USA),29681385
 Guatemala,29675705
 Kazakhstan,29091369
-Dominican_Republic,28815158
-Trinidad_and_Tobago,27351038
+Dominican Republic,28815158
+Trinidad and Tobago,27351038
 Bolivia,26685125
 Greece,25876264
 Venezuela,25712846
 Ukraine,24912763
-Papua_New_Guinea,20760795
+Papua New Guinea,20760795
 Jamaica,19944601
 Uganda,19776956
 Mozambique,16782370
@@ -95,18 +94,18 @@ Georgia,16347177
 Ethiopia,15283196
 Brunei,14555886
 Yemen,13744679
-Cayman_islands_(UK),13052167
+Cayman islands (UK),13052167
 Ghana,12762560
 Lao,12650605
 Mauritius,12431251
 Slovenia,11957167
-El_Salvador,11951580
+El Salvador,11951580
 Estonia,11598647
 Nicaragua,11521033
 Angola,10006313
 Tunisia,9819212
 Suriname,9560818
-Gibraltar_(UK),9451103
+Gibraltar (UK),9451103
 Uruguay,9389222
 Zambia,8867909
 Azerbaijan,8851865
@@ -118,18 +117,18 @@ Fiji,7494566
 Libya,7367417
 Sudan,7240609
 Vanuatu,7196568
-Bermuda_(UK),6864558
-Côte_d'Ivoire,6599152
+Bermuda (UK),6864558
+Côte d'Ivoire,6599152
 Iceland,6386979
 Latvia,6385817
 Lithuania,6353679
 Djibouti,6214318
 Senegal,5857588
-Northern_Mariana_Islands_(USA),5732892
+Northern Mariana Islands (USA),5732892
 Guyana,5488192
 Nepal,5304041
 Haiti,5018570
-New_Caledonia_(France),4856555
+New Caledonia (France),4856555
 Gabon,4372832
 Cuba,4341995
 Croatia,4129051
@@ -143,81 +142,81 @@ Cameroon,3150810
 Barbados,3133006
 Namibia,3127685
 Afghanistan,3037980
-Netherlands_Antilles,2789142
+Netherlands Antilles,2789142
 Kyrgyz,2755694
 Micronesia,2559524
-French_West_Indies,2383049
+French West Indies,2383049
 Niger,2375131
 Tuvalu,2240059
 Maldives,2145688
-Canary_Islands_(Spain),1965687
+Canary Islands (Spain),1965687
 Serbia,1938353
 Palau,1913645
 Bhutan,1867965
 Belarus,1866765
 Madagascar,1790144
 Samoa,1777147
-Solomon_Islands,1664237
-South_Sudan,1655843
-Burkina_Faso,1650470
-Reunion_(France),1642587
-French_Polynesia,1619096
+Solomon Islands,1664237
+South Sudan,1655843
+Burkina Faso,1650470
+Reunion (France),1642587
+French Polynesia,1619096
 Moldova,1619004
-Antigua_and_Barbuda,1562713
+Antigua and Barbuda,1562713
 Guinea,1367750
 Rwanda,1347035
-Sierra_Leone,1333723
-St.Christopher_and_Nevis,1292070
+Sierra Leone,1333723
+St.Christopher and Nevis,1292070
 Seychelles,1279112
 Mauritania,1260333
 St.Lucia,1207196
 Swaziland,1178520
 Syria,1115957
-Equatorial_Guinea,1115813
+Equatorial Guinea,1115813
 Benin,1112419
 Armenia,1091318
 Chad,1063799
-Former_Yugoslav_Republic_of_Macedonia,1046431
+Former Yugoslav Republic of Macedonia,1046431
 Grenada,975321
-Bosnia_and_Herzegovina,921348
-British_Virgin_Islands,915231
+Bosnia and Herzegovina,921348
+British Virgin Islands,915231
 Niue,872725
-Central_Africa,718288
+Central Africa,718288
 Mali,706133
 Somalia,653023
 Lesotho,647016
 Tajikistan,644805
 Montenegro,628543
 Tonga,626354
-Turks_and_Caicos_Islands_(UK),620739
+Turks and Caicos Islands (UK),620739
 Burundi,611182
 Belize,606791
 Timor-Leste,596118
 St.Vincent,582082
 Dominica,579158
-Cape_Verde,499949
-British_Anguilla,353315
+Cape Verde,499949
+British Anguilla,353315
 Cook,353058
-French_Guiana,310424
+French Guiana,310424
 Comoros,263814
-West_Bank_and_Gaza_Strip,186534
-Sao_Tome_and_Principe,159861
+West Bank and Gaza Strip,186534
+Sao Tome and Principe,159861
 Albania,153143
 Monaco,144608
-American_Samoa,139501
-Ceuta_and_Melilla_(Spain),133282
+American Samoa,139501
+Ceuta and Melilla (Spain),133282
 Gambia,117093
 Eritrea,102968
-Other_Australian_Territories,70047
-Monstserrat_(UK),65112
-US_Virgin_Islands,50171
-West_Sahara,42213
+Other Australian Territories,70047
+Monstserrat (UK),65112
+US Virgin Islands,50171
+West Sahara,42213
 Andorra,30825
 Guinea-Bissau,24393
 Nauru,16307
 Kosovo,16286
-Falkland_Islands_and_Dependencies_(UK),9509
-St._Helena_Island_and_Dependencies_(UK),2380
-Greenland_(Denmark),1597
-British_Antarctic_Territory,700
-Tokelau_Islands_(NZ),224
+Falkland Islands and Dependencies (UK),9509
+St. Helena Island and Dependencies (UK),2380
+Greenland (Denmark),1597
+British Antarctic Territory,700
+Tokelau Islands (NZ),224
