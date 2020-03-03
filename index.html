@@ -143,50 +143,62 @@
           .attr("width", d => valueScale(d.value))
           .attr("height", goodScale.bandwidth());
 
-        bars.append("text")
-          .attr("x", 40)
-          .attr("y", d => goodScale(d.hs2_name) + 5)
-          .attr("text-anchor", "center")
-           .text(d => d.hs2_name);
-        
-        //draw legend
-        svg.append('rect')
-          .attr('width', 190)
-          .attr('height', 110)
-          .attr("x", (width - 265))
-          .attr("y", 70)
-          .attr("rx", 10)
-          .attr("ry", 10)
-          .attr('fill', '#393f41')
-          .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
-        
-        const legendTitle = svg.append('text')
-          .attr("x", (width - 250))
-          .attr("y", "80")
-          .attr('dominant-baseline', "hanging")
-          .text("Type of good / Billions of Yen")
-          .attr('fill', "white")
-          .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
 
-          let yPosLegend = 60;
-        for (let i = 0; i <= Object.keys(data).length; i++){
-          let xPositionlegendSquare = 290;
-          const legendSquare1 = svg.append('rect')
-            .attr('width', "10")
-            .attr('height', "10")
-            .attr("x", (width - xPositionlegendSquare))
-            .attr("y", (yPosLegend))
-            .attr('fill', goodScaleColor(data[i].hs2_name));
-          
-          const legend1 = svg.append('text')
-            .attr("x", (width - xPositionlegendSquare - 15))
-            .attr("y", (yPosLegend - 3))
-            .attr('dominant-baseline', "hanging")
-            .text(data[i].hs2_name)
-            .attr('fill', "white");
-          
-          yPosLegend = yPosLegend +20;
-        }
+          var text = yearGraph.selectAll("text")
+            .data(d => [d])
+            .enter()
+            .append("text")
+            .attr("x", 5)
+            .attr("y", d => goodScale(d.hs2_name) + 25)
+            .attr("text-anchor", "center")
+            .text(d => d.hs2_name)
+            .attr("fill","white");
+
+        //
+        // // bars.append("text")
+        // //   .attr("x", 40)
+        // //   .attr("y", d => goodScale(d.hs2_name) + 5)
+        // //   .attr("text-anchor", "center")
+        // //    .text(d => d.hs2_name);
+        //
+        // //draw legend
+        // svg.append('rect')
+        //   .attr('width', 190)
+        //   .attr('height', 110)
+        //   .attr("x", (width - 265))
+        //   .attr("y", 70)
+        //   .attr("rx", 10)
+        //   .attr("ry", 10)
+        //   .attr('fill', '#393f41')
+        //   .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
+        //
+        // const legendTitle = svg.append('text')
+        //   .attr("x", (width - 250))
+        //   .attr("y", "80")
+        //   .attr('dominant-baseline', "hanging")
+        //   .text("Type of good / Billions of Yen")
+        //   .attr('fill', "white")
+        //   .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
+        //
+        //   let yPosLegend = 60;
+        // for (let i = 0; i <= Object.keys(data).length; i++){
+        //   let xPositionlegendSquare = 290;
+        //   const legendSquare1 = svg.append('rect')
+        //     .attr('width', "10")
+        //     .attr('height', "10")
+        //     .attr("x", (width - xPositionlegendSquare))
+        //     .attr("y", (yPosLegend))
+        //     .attr('fill', goodScaleColor(data[i].hs2_name));
+        //
+        //   const legend1 = svg.append('text')
+        //     .attr("x", (width - xPositionlegendSquare - 15))
+        //     .attr("y", (yPosLegend - 3))
+        //     .attr('dominant-baseline', "hanging")
+        //     .text(data[i].hs2_name)
+        //     .attr('fill', "white");
+        //
+        //   yPosLegend = yPosLegend +20;
+        // }
       }, (error) => {
         console.log("ERRORRRRR");
       });
