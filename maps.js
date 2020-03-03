@@ -33,7 +33,7 @@ let colorScale = d3.scaleSequential(d3.interpolateReds)
 
 var promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
-    d3.csv('dataset/ds_2000_exports_mc_country.csv', function (d) {
+    d3.csv('dataset/ds_1988_exports_country.csv', function (d) {
 
         trade.set(d.country, +d.value);
     })
@@ -94,7 +94,7 @@ let trade2 = d3.map();
 
 let promises2 = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
-    d3.csv('dataset/ds_2015_exports_mc_country.csv', function (d) {
+    d3.csv('dataset/ds_2015_exports_country.csv', function (d) {
 
         trade2.set(d.country, +d.value);
     })
