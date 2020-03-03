@@ -22,6 +22,10 @@ u {
     text-decoration-thickness: 4px;
 }
 
+text{
+  text-orientation: sideways;
+}
+
 .legend span {
     margin-right: 10px;
 }
