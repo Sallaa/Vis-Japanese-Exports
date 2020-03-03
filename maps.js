@@ -16,22 +16,86 @@ svg.append('rect')
     .attr("ry", 10)
     .attr('fill', '#1c1e20');
 
-var projection = d3.geoMercator()
+let projection = d3.geoMercator()
     .center([0, 20])
     .scale(150);
 
-var path = d3.geoPath()
+let path = d3.geoPath()
     .projection(projection);
 
 const mapPath = svg.append('g')
     .attr('class', 'mapPath');
 
 //map and color scale
-var trade = d3.map();
+let trade = d3.map();
 let colorScale1 = d3.scaleSequential(d3.interpolateReds)
     .domain([0, 2000000000]);
 
-var promises = [
+//draw legend
+const legendTitle = svg.append('text')
+    .attr("x", "10")
+    .attr("y", (height - 105))
+    .attr('dominant-baseline', "hanging")
+    .text("Value in Yen ($1 ≃ ¥108)")
+    .attr('fill', "white");
+
+const legendSquare1 = svg.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height - 80))
+    .attr('fill', colorScale1(0));
+
+const legend1 = svg.append('text')
+    .attr("x", "30")
+    .attr("y", (height - 83))
+    .attr('dominant-baseline', "hanging")
+    .text("0")
+    .attr('fill', "white");
+
+const legendSquare2 = svg.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height - 60))
+    .attr('fill', colorScale1(500000000));
+
+const legend2 = svg.append('text')
+    .attr("x", "30")
+    .attr("y", (height - 63))
+    .attr('dominant-baseline', "hanging")
+    .text("500 Millions")
+    .attr('fill', "white");
+
+const legendSquare3 = svg.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height - 40))
+    .attr('fill', colorScale1(1500000000));
+
+const legend3 = svg.append('text')
+    .attr("x", "30")
+    .attr("y", (height - 43))
+    .attr('dominant-baseline', "hanging")
+    .text("1,5 Billion")
+    .attr('fill', "white");
+
+const legendSquare4 = svg.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height - 20))
+    .attr('fill', colorScale1(2000000000));
+
+const legend4 = svg.append('text')
+    .attr("x", "30")
+    .attr("y", (height - 23))
+    .attr('dominant-baseline', "hanging")
+    .text("2 Billions or more")
+    .attr('fill', "white");
+
+let promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
     d3.csv('dataset/ds_1988_exports_country.csv', function (d) {
 
@@ -44,7 +108,7 @@ Promise.all(promises).then(ready);
 function ready([data]) {
 
     // convert topojson to geo data
-    var countries = topojson.feature(data, data.objects.countries).features;
+    let countries = topojson.feature(data, data.objects.countries).features;
     console.log(countries);
 
     // // create path
@@ -95,6 +159,70 @@ let trade2 = d3.map();
 let colorScale2 = d3.scaleSequential(d3.interpolateReds)
     .domain([0, 2000000000]);
 
+//draw legend
+const legendTitle_2 = svg2.append('text')
+    .attr("x", "10")
+    .attr("y", (height2 - 105))
+    .attr('dominant-baseline', "hanging")
+    .text("Value in Yen ($1 ≃ ¥108)")
+    .attr('fill', "white");
+
+const legendSquare1_2 = svg2.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height2 - 80))
+    .attr('fill', colorScale2(0));
+
+const legend1_2 = svg2.append('text')
+    .attr("x", "30")
+    .attr("y", (height2 - 83))
+    .attr('dominant-baseline', "hanging")
+    .text("0")
+    .attr('fill', "white");
+
+const legendSquare2_2 = svg2.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height2 - 60))
+    .attr('fill', colorScale2(500000000));
+
+const legend2_2 = svg2.append('text')
+    .attr("x", "30")
+    .attr("y", (height2 - 63))
+    .attr('dominant-baseline', "hanging")
+    .text("500 Millions")
+    .attr('fill', "white");
+
+const legendSquare3_2 = svg2.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height2 - 40))
+    .attr('fill', colorScale2(1500000000));
+
+const legend3_2 = svg2.append('text')
+    .attr("x", "30")
+    .attr("y", (height2 - 43))
+    .attr('dominant-baseline', "hanging")
+    .text("1,5 Billion")
+    .attr('fill', "white");
+
+const legendSquare4_2 = svg2.append('rect')
+    .attr('width', "10")
+    .attr('height', "10")
+    .attr("x", "10")
+    .attr("y", (height2 - 20))
+    .attr('fill', colorScale2(2000000000));
+
+const legend4_2 = svg2.append('text')
+    .attr("x", "30")
+    .attr("y", (height2 - 23))
+    .attr('dominant-baseline', "hanging")
+    .text("2 Billions or more")
+    .attr('fill', "white");
+
 let promises2 = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
     d3.csv('dataset/ds_2015_exports_country.csv', function (d) {
@@ -108,7 +236,7 @@ Promise.all(promises2).then(ready2);
 function ready2([data]) {
 
     // convert topojson to geo data
-    var countries = topojson.feature(data, data.objects.countries).features;
+    let countries = topojson.feature(data, data.objects.countries).features;
 
     // // create path
     d3.json("dataset/world.topojson").then(function (data) {
