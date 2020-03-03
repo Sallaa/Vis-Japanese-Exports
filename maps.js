@@ -16,6 +16,8 @@ svg.append('rect')
     .attr("ry", 10)
     .attr('fill', '#1c1e20');
 
+
+// https://www.d3-graph-gallery.com/graph/choropleth_basic.html for choropleth example
 let projection = d3.geoMercator()
     .center([0, 20])
     .scale(150);
@@ -26,7 +28,7 @@ let path = d3.geoPath()
 const mapPath = svg.append('g')
     .attr('class', 'mapPath');
 
-//map and color scale
+//map and color scale (from d3 documentation)
 let trade = d3.map();
 let colorScale1 = d3.scaleSequential(d3.interpolateReds)
     .domain([0, 2000000000]);
@@ -95,6 +97,8 @@ const legend4 = svg.append('text')
     .text("2 Billions or more")
     .attr('fill', "white");
 
+
+// Promise structure from https://bl.ocks.org/adamjanes/6cf85a4fd79e122695ebde7d41fe327f
 let promises = [
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
     d3.csv('dataset/ds_1988_exports_country.csv', function (d) {
