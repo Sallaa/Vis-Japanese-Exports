@@ -19,7 +19,7 @@
 
 
   <h1><span class="red">Japan</span>'s Exported goods</h1>
-  <p> This chart shows the top 10 types of goods traded, and the economic benefit Japan gained from these goods, in 1988
+  <p id="top_description"> This chart shows the top 10 types of goods traded, and the economic benefit Japan gained from these goods, in 1988
     and 2015.</p>
 
   <p id="graph_01">
@@ -46,10 +46,10 @@
         var width = 960;
         var height = 600;
         var margin = {
-          top: 20,
-          bottom: 20,
-          right: 0,
-          left: 30
+          top: 40,
+          bottom: 40,
+          right: 40,
+          left:40
         }
         var chartWidth = width - margin.left - margin.right;
         var chartHeight = height - margin.top - margin.bottom;
@@ -62,8 +62,19 @@
         var svg = d3.select("#graph_01").append("svg")
           .attr("width", width)
           .attr("height", height)
+          .style("-webkit-filter", "drop-shadow( 0px 10px 1rem #1c1e20)")
+          .style("filter", "drop-shadow( 0px 10px 1rem #1c1e20)")
+          .style("padding-bottom", "3rem")
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append('rect')
+          .attr('width', width)
+          .attr('height', height)
+          .attr("rx", 10)
+          .attr("ry", 10)
+          .attr('fill', '#1c1e20')
+          .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
 
 
         // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
@@ -93,18 +104,22 @@
         svg.append("g")
           .attr("class", "x axis")
           .attr("transform", `translate(0,${chartHeight})`)
-          .call(xAxis)
-          .attr("font-weight", "bold");
+          .attr("stroke-width", '1')
+          .attr("color", 'white')
+          .call(xAxis);
 
         // Y-axis
         svg.append("g")
           .attr("class", "y axis")
           .call(yAxis)
-          .attr("font-size", 10)
-          .attr("font-weight", "bold");
+          .attr("stroke-width", '1')
+          .attr("color", 'white')
+          .attr("font-size", 10);
 
         svg.append("g")
           .attr("class", "x grid")
+          .attr("stroke-width", '1')
+          .attr("color", 'white')
           .call(xGridlines);
 
 
@@ -135,8 +150,7 @@
           .attr("x", 40)
           .attr("y", d => goodScale(d.hs2_name) + 5)
           .attr("text-anchor", "center")
-          .text(d => d.good_type)
-          .style("fill", "black");
+          .text(d => d.good_type);
 
 
       }, (error) => {
