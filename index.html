@@ -27,6 +27,7 @@
       d3.csv("./dataset/overall.csv").then((data) => {
 
 
+        // getting all unique good types since overall csv contains both years
         var goods = [];
         var years = [1988, 2015];
 
@@ -36,12 +37,8 @@
           goods.push(d["hs2_name"]);
         });
 
-        console.log(goods);
-
-        data = data.slice().sort((a, b) => d3.descending(a.value, b.value) && d3.ascending(a.year, b.year));
-
         var goods = [...new Set(goods)];
-        // console.log(goods);
+
 
         console.log(data);
 
@@ -61,6 +58,7 @@
           dateFormat: '%y'
         };
 
+        // creating svg
         var svg = d3.select("#graph_01").append("svg")
           .attr("width", width)
           .attr("height", height)
@@ -70,6 +68,7 @@
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+        // Add the bars
         svg.append('rect')
           .attr('width', width)
           .attr('height', height)
@@ -80,10 +79,9 @@
 
 
         // Range round band learned from d3_noobs bar chart tutorial https://bl.ocks.org/d3noob/8952219
-
         var yearScale = d3.scaleBand()
           .domain(years)
-          .rangeRound([0, chartHeight - 20])
+          .rangeRound([0, chartHeight - 20]) //to give some breathing space in the graph
           .paddingInner(0.1);
 
         var goodScale = d3.scaleBand()
@@ -91,19 +89,23 @@
           .range([0, yearScale.bandwidth()])
           .padding(0.2);
 
-        var valueScale = d3.scaleLinear().domain(d3.extent(data, d => d['value'])).range([0, chartWidth]);
+        var valueScale = d3.scaleLinear()
+        .domain(d3.extent(data, d => d['value']))
+        .range([0, chartWidth]);
 
         var goodScaleColor = d3.scaleOrdinal(d3.schemeTableau10);
 
         // Tutorial followed from https://d3-wiki.readthedocs.io/zh_CN/master/SVG-Axes/
         var currencyFormatter = d3.formatPrefix(".0", 1e8);
+        var xAxis = d3.axisBottom(valueScale)
+        .tickFormat(function(d) { return "¥ " + currencyFormatter(d); })
+        .tickSizeOuter(axisTicks.outerSize);
 
-        var xAxis = d3.axisBottom(valueScale).tickFormat(function(d) { return "¥ " + currencyFormatter(d); }).tickSizeOuter(axisTicks.outerSize);
         var yAxis = d3.axisLeft(yearScale).tickSizeOuter(axisTicks.outerSize);
-        let xGridlines = d3.axisBottom(valueScale)
+
+        var xGridlines = d3.axisBottom(valueScale)
           .tickSize(chartHeight)
           .tickFormat("")
-
 
         //X-axis
         svg.append("g")
@@ -121,6 +123,7 @@
           .attr("color", 'white')
           .attr("font-size", 10);
 
+        // Xgridlines
         svg.append("g")
           .attr("class", "x grid")
           .attr("stroke-width", '0.75')
@@ -136,7 +139,7 @@
           .attr("id", "year")
           .attr("transform", d => `translate(0, ${yearScale(d.Year)})`);
 
-
+        // Adding the bars
         var bars = yearGraph.selectAll(".bars")
           .data(d => [d])
           .enter()
@@ -148,7 +151,7 @@
           .attr("width", d => valueScale(d.value))
           .attr("height", goodScale.bandwidth());
 
-
+          // Text on top of bars: a potential option
           // var text = yearGraph.selectAll("text")
           //   .data(d => [d])
           //   .enter()
@@ -172,6 +175,7 @@
 
         let xPositionlegendSquare = 360;
 
+        // creating legend title
         const legendTitle = svg.append('text')
           .attr("x", (width+25 - xPositionlegendSquare))
           .attr("y", 17)
@@ -180,8 +184,9 @@
           .attr('fill', "white")
           .attr('font-weight',"bold");
 
-          console.log(goods);
           let yPosLegend = 43;
+
+        // Creating legend squares to show colors associated with groups
         for (let i = 0; i <= Object.keys(goods).length; i++){
           const legendSquare1 = svg.append('rect')
             .attr('width', "15")
@@ -189,7 +194,8 @@
             .attr("x", (width - xPositionlegendSquare))
             .attr("y", (yPosLegend))
             .attr('fill', goodScaleColor(data[i].hs2_name));
-
+            
+          // Creating the group names to associate with the squares
           const legend1 = svg.append('text')
             .attr("x", (width - xPositionlegendSquare + 20))
             .attr("y", (yPosLegend - 3))
