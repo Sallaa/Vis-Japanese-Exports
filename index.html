@@ -20,7 +20,8 @@
 
 
   <h1><span class="red">Japan</span>'s exported goods</h1>
-  <p id="top_description">This chart shows the top 10 types of goods traded, and the economic benefit Japan gained from these goods, in 1988
+  <p id="top_description">This chart shows the top 10 types of goods traded, and the economic benefit Japan gained from
+    these goods, in 1988
     and 2015. All values have been adjusted for inflation.</p>
 
   <p id="graph_01">
@@ -49,7 +50,7 @@
           top: 40,
           bottom: 40,
           right: 40,
-          left:40
+          left: 40
         }
         var chartWidth = width - margin.left - margin.right;
         var chartHeight = height - margin.top - margin.bottom;
@@ -91,16 +92,18 @@
           .padding(0.2);
 
         var valueScale = d3.scaleLinear()
-        .domain(d3.extent(data, d => d['value']))
-        .range([0, chartWidth]);
+          .domain(d3.extent(data, d => d['value']))
+          .range([0, chartWidth]);
 
         var goodScaleColor = d3.scaleOrdinal(d3.schemeTableau10);
 
         // Tutorial followed from https://d3-wiki.readthedocs.io/zh_CN/master/SVG-Axes/
         var currencyFormatter = d3.formatPrefix(".0", 1e8);
         var xAxis = d3.axisBottom(valueScale)
-        .tickFormat(function(d) { return "¥ " + currencyFormatter(d); })
-        .tickSizeOuter(axisTicks.outerSize);
+          .tickFormat(function (d) {
+            return "¥ " + currencyFormatter(d);
+          })
+          .tickSizeOuter(axisTicks.outerSize);
 
         var yAxis = d3.axisLeft(yearScale).tickSizeOuter(axisTicks.outerSize);
 
@@ -147,21 +150,21 @@
           .append("rect")
           .attr("class", "bars")
           .attr('x', 1)
-          .attr("y", d => goodScale(d.hs2_name)+ 10)
+          .attr("y", d => goodScale(d.hs2_name) + 10)
           .style("fill", d => goodScaleColor(d.hs2_name))
           .attr("width", d => valueScale(d.value))
           .attr("height", goodScale.bandwidth());
 
-          // Text on top of bars: a potential option
-          // var text = yearGraph.selectAll("text")
-          //   .data(d => [d])
-          //   .enter()
-          //   .append("text")
-          //   .attr("x", 5)
-          //   .attr("y", d => goodScale(d.hs2_name) + 25)
-          //   .attr("text-anchor", "center")
-          //   .text(d => d.hs2_name)
-          //   .attr("fill","white");
+        // Text on top of bars: a potential option
+        // var text = yearGraph.selectAll("text")
+        //   .data(d => [d])
+        //   .enter()
+        //   .append("text")
+        //   .attr("x", 5)
+        //   .attr("y", d => goodScale(d.hs2_name) + 25)
+        //   .attr("text-anchor", "center")
+        //   .text(d => d.hs2_name)
+        //   .attr("fill","white");
 
         //draw legend
         svg.append('rect')
@@ -178,17 +181,17 @@
 
         // creating legend title
         const legendTitle = svg.append('text')
-          .attr("x", (width+25 - xPositionlegendSquare))
+          .attr("x", (width + 25 - xPositionlegendSquare))
           .attr("y", 17)
           .attr('dominant-baseline', "hanging")
           .text("Type of good")
           .attr('fill', "white")
-          .attr('font-weight',"bold");
+          .attr('font-weight', "bold");
 
-          let yPosLegend = 43;
+        let yPosLegend = 43;
 
         // Creating legend squares to show colors associated with groups
-        for (let i = 0; i < Object.keys(goods).length; i++){
+        for (let i = 0; i < Object.keys(goods).length; i++) {
           const legendSquare1 = svg.append('rect')
             .attr('width', "15")
             .attr('height', "15")
@@ -204,7 +207,7 @@
             .text(data[i].hs2_name)
             .attr('fill', "white");
 
-          yPosLegend = yPosLegend +20;
+          yPosLegend = yPosLegend + 20;
         }
       }, (error) => {
         console.log(error);
