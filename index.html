@@ -165,7 +165,7 @@
         //draw legend
         svg.append('rect')
           .attr('width', 260)
-          .attr('height', 260)
+          .attr('height', 240)
           .attr("x", (width - 330))
           .attr("y", 47)
           .attr("rx", 10)
@@ -187,7 +187,7 @@
           let yPosLegend = 43;
 
         // Creating legend squares to show colors associated with groups
-        for (let i = 0; i <= Object.keys(goods).length; i++){
+        for (let i = 0; i < Object.keys(goods).length; i++){
           const legendSquare1 = svg.append('rect')
             .attr('width', "15")
             .attr('height', "15")
@@ -198,7 +198,7 @@
           // Creating the group names to associate with the squares
           const legend1 = svg.append('text')
             .attr("x", (width - xPositionlegendSquare + 20))
-            .attr("y", (yPosLegend - 3))
+            .attr("y", (yPosLegend + 1))
             .attr('dominant-baseline', "hanging")
             .text(data[i].hs2_name)
             .attr('fill', "white");
@@ -206,7 +206,7 @@
           yPosLegend = yPosLegend +20;
         }
       }, (error) => {
-        console.log("ERRORRRRR");
+        console.log(error);
       });
     </script>
   </p>
