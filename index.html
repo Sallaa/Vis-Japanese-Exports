@@ -36,6 +36,8 @@
           goods.push(d["hs2_name"]);
         });
 
+        console.log(goods);
+
         data = data.slice().sort((a, b) => d3.descending(a.value, b.value) && d3.ascending(a.year, b.year));
 
         var goods = [...new Set(goods)];
@@ -62,8 +64,8 @@
         var svg = d3.select("#graph_01").append("svg")
           .attr("width", width)
           .attr("height", height)
-          .style("-webkit-filter", "drop-shadow( 0px 10px 1rem #1c1e20)")
-          .style("filter", "drop-shadow( 0px 10px 1rem #1c1e20)")
+          .style("-webkit-filter", "drop-shadow( 0px 10px 0.5rem #1c1e20)")
+          .style("filter", "drop-shadow( 0px 10px 0.5rem #1c1e20)")
           .style("padding-bottom", "3rem")
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -138,7 +140,7 @@
           .append("rect")
           .attr("class", "bars")
           .attr('x', 1)
-          .attr("y", d => goodScale(d.hs2_name) + 10)
+          .attr("y", d => goodScale(d.hs2_name)+ 10)
           .style("fill", d => goodScaleColor(d.hs2_name))
           .attr("width", d => valueScale(d.value))
           .attr("height", goodScale.bandwidth());
@@ -154,13 +156,13 @@
             .text(d => d.hs2_name)
             .attr("fill","white");
 
-        //
-        // // bars.append("text")
-        // //   .attr("x", 40)
-        // //   .attr("y", d => goodScale(d.hs2_name) + 5)
-        // //   .attr("text-anchor", "center")
-        // //    .text(d => d.hs2_name);
-        //
+
+        // bars.append("text")
+        //   .attr("x", 40)
+        //   .attr("y", d => goodScale(d.hs2_name) + 5)
+        //   .attr("text-anchor", "center")
+        //    .text(d => d.hs2_name);
+
         // //draw legend
         // svg.append('rect')
         //   .attr('width', 190)
@@ -181,7 +183,7 @@
         //   .attr("transform", "translate(" + (-margin.left) + "," + (-margin.top) + ")");
         //
         //   let yPosLegend = 60;
-        // for (let i = 0; i <= Object.keys(data).length; i++){
+        // for (let i = 0; i <= Object.keys(goods).length; i++){
         //   let xPositionlegendSquare = 290;
         //   const legendSquare1 = svg.append('rect')
         //     .attr('width', "10")
@@ -191,7 +193,7 @@
         //     .attr('fill', goodScaleColor(data[i].hs2_name));
         //
         //   const legend1 = svg.append('text')
-        //     .attr("x", (width - xPositionlegendSquare - 15))
+        //     .attr("x", (width - xPositionlegendSquare))
         //     .attr("y", (yPosLegend - 3))
         //     .attr('dominant-baseline', "hanging")
         //     .text(data[i].hs2_name)
